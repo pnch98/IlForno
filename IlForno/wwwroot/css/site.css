@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+* {
+    font-family: "Playfair Display", serif;
+}
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background: rgb(79,50,46);
+    background: linear-gradient(165deg, rgba(79,50,46,1) 0%, rgba(37,25,27,1) 62%);
+    color: #FFF5ED;
+    width: 100dvw;
+    overflow-x: hidden;
+}
+.bgFornoGradient {
+    background: rgb(79,50,46);
+    background: linear-gradient(165deg, rgba(79,50,46,1) 0%, rgba(37,25,27,1) 62%);
+}
+.navLink {
+    background-color: #6c2c2e;
+    color: #FFF5ED;
+}
+    .navLink:hover {
+        color: #e8cfbb;
+    }
+.navColor {
+    background-color: #6c2c2e;
+}
+.linkColor {
+    color: #FFF5ED;
+    text-decoration: none;
+}
+    .linkColor:hover {
+        color: #e8cfbb;
+    }
+.darkColor {
+    color: #2B1D1E;
+}
+    .darkColor:hover {
+        color: #4D2819;
+    }
+.btnDarkColor {
+    background-color: #2B1D1E;
+    color: #FFF5ED;
+}
+    .btnDarkColor:hover {
+        background-color: #4D2819;
+        color: #FFF5ED;
+    }
+.btnLightOutline {
+    background-color: transparent;
+    color: #FFF5ED;
+    border: 1px solid #FFF5ED;
+    border-radius: 5px;
+    cursor: pointer;
+    padding-inline: 10px;
+    padding-block: 5px;
+    text-decoration: none;
+}
+
+    .btnLightOutline:hover {
+        background-color: #6d45328f;
+        color: #fcd8bc;
+    }
+
+.bgForno {
+    background-color: #2B1D1E;
+}
+.bgFornoLight {
+    background-color: #D2B48C;
+}
+.textFornoDark {
+    color: #2B1D1E;
+}
+.divBadge {
+    position: absolute;
+    top: 0;
+    right: 0;  
+}
+.badgeForno {
+    background-color: #D2B48C;
+    color: white;
+    font-size: 1rem;
+    padding-block: 10px;
+    border-radius: 50%;
+}
+    .badgeForno:hover {
+        color: #4D2819;
+    }
+.badgeFornoCarrello {
+    background-color: #D2B48C;
+    color: white;
+    font-size: 0.6rem;
+    padding-inline: 5px;
+    border-radius: 50%;
+    position: absolute;
+    top: -20%;
+    right: -20%;
+}
+
+.carousel-container {
+    max-width: 100%;
+    max-height: 560px; /* Adjust the maximum height as needed */
+    overflow: hidden;
+    width: 100%;
+    height: 1000px;
+}
+
+.carousel {
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-inner {
+    transition: none;
+}
+
+.carousel-item {
+    width: 100%;
+    overflow: hidden;
+    height: 100%; /* Set the height of carousel items to 100% */
+}
+
+    .carousel-item img {
+        width: 100%;
+        height: 100%; /* Set the height of images to 100% */
+        object-fit: cover;
+    }
+.bgPomodoro {
+    background-color: #6c2c2e;
+}
+.menuProduct {
+    opacity: 0;
+    left: 0;
+    width: 0;
+    color: #6c2c2e;
+    transition: opacity 1.5s ease-in-out, width 1.5s ease-in-out, color 1s 0.5s ease-in-out;
+}
+    .menuProduct.showProduct {
+        opacity: 1;
+        width: 100%;
+        color: #FFF5ED;
+    }
+
+.menuProductRight {
+    opacity: 0;
+    right: -100%; /* Initially position it off the screen to the right */
+    width: 0;
+    color: #6c2c2e;
+    transition: opacity 1.5s ease-in-out, width 1.5s ease-in-out, color 1s 0.5s ease-in-out, right 1.5s ease-in-out; /* Include right transition */
+}
+    .menuProductRight.showProductRight {
+        opacity: 1;
+        right: 0; /* Move it to the left edge of the container */
+        width: 100%; /* Expand it to full width */
+        color: #FFF5ED;
+    }
+.dropdown-menu {
+    left: auto;
+    right: 0;
+}
+.transparent-toggle {
+    background-color: transparent !important;
+    border: none;
+    padding: 0;
+}
+
+    .transparent-toggle::after {
+        display: none;
+    }
+.custom-dropdown-menu {
+    background-color: #FFF5ED;
+    color: rgb(79,50,46);
+}
+
+    .custom-dropdown-menu .dropdown-item {
+        color: inherit;
+    }

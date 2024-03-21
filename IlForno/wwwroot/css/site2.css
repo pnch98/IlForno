@@ -1,0 +1,146 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+* {
+    font-family: "Playfair Display", serif;
+}
+
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: #6C2C2E;
+    color: #FFF5ED;
+    width: 100dvw;
+    overflow-x: hidden;
+}
+.bgFornoGradient {
+    background: rgb(79,50,46);
+    background: linear-gradient(165deg, rgba(79,50,46,1) 0%, rgba(37,25,27,1) 62%);
+}
+.navLink {
+    background-color: rgb(64, 40, 37);
+    color: #FFF5ED;
+}
+    .navLink:hover {
+        color: #e8cfbb;
+    }
+.navColor {
+    background-color: rgb(64, 40, 37);
+}
+.thirdColor {
+    color: #FFF5ED;
+}
+    .thirdColor:hover {
+        color: #e8cfbb;
+    }
+.btnThirdColor {
+    background-color: rgb(64, 40, 37);
+    color: #FFF5ED;
+}
+    .btnThirdColor:hover {
+        background-color: rgb(44, 27, 25);
+        color: #FFF5ED;
+    }
+.btnFourthColor {
+    background-color: #D2B48C;
+    color: rgb(64, 40, 37);
+}
+    .btnFourthColor:hover {
+        background-color: #baa07d;
+        color: rgb(64, 40, 37);
+    }
+.darkColor {
+    color: rgb(44, 27, 25);
+}
+    .darkColor:hover {
+        color: rgb(37, 23, 17);
+    }
+.rightHeight {
+    min-height: calc(100vh - 186px);
+}
+.bgFornoLight {
+    background-color: #D2B48C;
+}
+.bgForno {
+    background-color: rgb(64, 40, 37);
+}
+.btnDarkColor {
+    background-color: rgb(64, 40, 37);
+    color: #FFF5ED;
+}
+
+    .btnDarkColor:hover {
+        background-color: rgb(37, 23, 22);
+        color: #FFF5ED;
+    }
+.fifthColor {
+    color: #D2B48C;
+}
+    .fifthColor:hover {
+        color: #baa07d;
+    }
+.btnLightOutline {
+    background-color: transparent;
+    color: #FFF5ED;
+    border: 1px solid #FFF5ED;
+    border-radius: 5px;
+    cursor: pointer;
+    padding-inline: 10px;
+    padding-block: 5px;
+    text-decoration: none;
+}
+
+    .btnLightOutline:hover {
+        background-color: #6d45328f;
+        color: #fcd8bc;
+    }
+.dropdown-menu {
+    left: auto;
+    right: 0;
+}
+
+.transparent-toggle {
+    background-color: transparent !important;
+    border: none;
+    padding: 0;
+}
+
+    .transparent-toggle::after {
+        display: none;
+    }
+
+.custom-dropdown-menu {
+    background-color: #FFF5ED;
+    color: rgb(79,50,46);
+}
+
+    .custom-dropdown-menu .dropdown-item {
+        color: inherit;
+    }
+.badgeFornoCarrello {
+    background-color: #D2B48C;
+    color: white;
+    font-size: 0.6rem;
+    padding-inline: 5px;
+    border-radius: 50%;
+    position: absolute;
+    top: -20%;
+    right: -20%;
+}

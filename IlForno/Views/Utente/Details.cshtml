@@ -1,0 +1,39 @@
+﻿@model IlForno.Models.Utente
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_Layout2";
+}
+
+<div class="d-flex align-items-baseline mb-2">
+    <h1 class="mb-0 me-2">Details</h1>
+    <h4 class="mb-0"> - Utente</h4>
+</div>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Role)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Role)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="thirdColor" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a class="thirdColor" asp-action="Index">Back to List</a>
+</div>

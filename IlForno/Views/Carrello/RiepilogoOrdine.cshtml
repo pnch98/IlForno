@@ -1,0 +1,39 @@
+﻿@model IlForno.Models.Ordine
+
+@{
+    ViewData["Title"] = "RiepilogoOrdine";
+    Layout = "_Layout2";
+}
+
+<h1>RiepilogoOrdine</h1>
+
+<hr />
+<div class="row mb-3">
+    <div class="col-md-4">
+        <form asp-action="RiepilogoOrdine">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input hidden asp-for="IdUtente" class ="form-control" asp-items="ViewBag.IdUtente" />
+            <div class="form-group">
+                <label asp-for="IndirizzoDiConsegna" class="control-label"></label>
+                <input asp-for="IndirizzoDiConsegna" class="form-control" />
+                <span asp-validation-for="IndirizzoDiConsegna" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Nota" class="control-label"></label>
+                <input asp-for="Nota" class="form-control" />
+                <span asp-validation-for="Nota" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Acquista" class="btn btnFourthColor" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="text-decoration-none thirdColor" asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

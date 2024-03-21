@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_HomeLayout";
+
+}
+@section HomeBody{
+    <div id="homeDiv" class="position-relative" style="height: 100%; width: 80%">
+        <div class="text-center ps-5">
+            <a id="menuBtn" class="btnDarkColor display-3 btnMenu ps-5">Menù</a>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#homeDiv").css("opacity", "1");
+
+            setTimeout(() => { 
+                // Add the "show" class to trigger the animation
+                $("#menuBtn").addClass("show");
+            }, 2500)
+
+            $("#menuBtn").click(function () {
+                $("#homeDiv").css("opacity", "0");
+                setTimeout(() => {
+                    location.assign("/Prodotto/Index");
+                }, 2500)
+            })
+        });
+    </script>
+}
+

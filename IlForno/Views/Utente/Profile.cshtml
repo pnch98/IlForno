@@ -1,0 +1,65 @@
+﻿@using System.Security.Claims
+@model IEnumerable<IlForno.Models.Ordine>
+
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "_Layout2";
+}
+
+    <h1 class="mb-3">Storico Ordini</h1>
+
+@{
+    if (Model != null)
+    {
+
+        @foreach (var item in Model)
+        {
+            <div class="bgForno border border-1 border-light rounded p-1 mb-2">
+                <div class="d-flex py-2 justify-content-around">
+                    <p class="mb-1">
+                        @Html.DisplayNameFor(model => model.DataOrdine): @Html.DisplayFor(modelItem => item.DataOrdine)
+                    </p>
+                    <p class="mb-1">
+                        @Html.DisplayNameFor(model => model.PrezzoTotale): @Html.DisplayFor(modelItem => item.PrezzoTotale)€
+                    </p>
+                    <p class="mb-1">
+                        @Html.DisplayNameFor(model => model.IndirizzoDiConsegna): @Html.DisplayFor(modelItem => item.IndirizzoDiConsegna)
+                    </p>
+                </div>
+                <div class="bgFornoLight p-2  rounded">
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Prodotto</th>
+                                    <th>Quantità</th>
+                                    <th>Prezzo</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    foreach (var dett in item.ListaDettagliOrdine)
+                                    {
+                                        double prezzoProdxQuant = dett.Prodotto.Prezzo * dett.Quantita;
+
+                                        <tr>
+                                            <td>@dett.Prodotto.Nome</td>
+                                            <td>@dett.Quantita</td>
+                                            <td>@prezzoProdxQuant€</td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+
+                    <p class="fw-bold mb-0" style="color: #FFF5ED;">Nota: @Html.DisplayFor(modelItem => item.Nota)</p>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p>Non hai ancora effettuato ordini.</p>
+    }
+}

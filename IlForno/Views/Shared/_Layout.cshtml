@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - IlForno</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="~/IlForno.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="position-sticky top-0" style="z-index: 10000;">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navColor border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand navLink fs-3 me-4" asp-area="" asp-controller="Home" asp-action="Index">IlForno</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="navLink text-decoration-none me-3" asp-area="" asp-controller="Prodotto" asp-action="Index">Home</a>
+                        </li>
+
+                    </ul>
+                    
+                    <div class="position-relative me-3">
+                        <a class="navLink text-decoration-none" asp-area="" asp-controller="Carrello" asp-action="Index">Il tuo ordine</a>
+                        <span id="badgeCarrello" class="badgeFornoCarrello mt-1 me-1">0</span>
+                    </div>
+
+                    <div class="dropdown ms-2">
+                        <button class="dropdown-toggle transparent-toggle" id="dropdownMenuButton">
+                            <a class="navLink text-decoration-none"><i class="bi bi-person-circle navLink fs-5"></i></a>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right custom-dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" asp-area="" asp-controller="Utente" asp-action="Profile">Storico ordini</a>
+                            @{
+                                if (User.IsInRole("Admin"))
+                                {
+                                    <a class="dropdown-item" asp-area="" asp-controller="Utente" asp-action="BackOffice">BackOffice</a>
+                                }
+                            }
+                            @{
+                                if (User.Identity.IsAuthenticated)
+                                {
+                                    <a class="dropdown-item" asp-area="" asp-controller="Login" asp-action="Logout">Logout</a>
+                                }
+                                else
+                                {
+                                    <a class="dropdown-item" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
+                                }
+                            }
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            <partial name="_Notification" />
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - IlForno - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            getCartData();
+
+            $('.dropdown-toggle').on('click', function () {
+                $(this).siblings('.dropdown-menu').toggle();
+            });
+
+            $(document).click(function (e) {
+                if (!$(e.target).closest('.dropdown').length) {
+                    $('.dropdown-menu').hide();
+                }
+            });
+        });
+
+        //Metodo che prende il numero di prodotti dal carrello nella sessione e lo aggiunge al badge
+        function getCartData() {
+            $.get('/Carrello/GetCartData')
+                .done(function (data) {
+                    $('#badgeCarrello').text(data.totalProducts);
+                })
+                .fail(function (xhr, textStatus, errorThrown) {
+                    console.error('Error fetching cart data:', errorThrown);
+                });
+        }
+    </script>
+
+   
+
+
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

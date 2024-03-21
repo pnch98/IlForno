@@ -1,0 +1,57 @@
+﻿@model IEnumerable<IlForno.Models.Ordine>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout2";
+}
+
+<h1>Ordini</h1>
+
+<table class="table bgFornoLight rounded">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PrezzoTotale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IndirizzoDiConsegna)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataOrdine)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nota)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Utente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsEvaso)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrezzoTotale)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IndirizzoDiConsegna)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataOrdine)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nota)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Utente.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsEvaso)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,72 @@
+﻿@{
+    Layout = "_Layout2";
+}
+
+<h3 class="h1 textFornoDark mb-3">BackOffice</h3>
+
+<div class="container d-flex flex-column justify-content-between p-2 mb-5">
+    <div class="row row-cols-2 g-3">
+        <div class="col">
+            <div class="d-flex justify-content-center align-content-center">
+                <a asp-controller="Prodotto" asp-action="Create" class="text-decoration-none btnLightOutline rounded p-2">Carica un nuovo prodotto</a>
+            </div>
+        </div>
+        <div class="col">
+            <div class="d-flex justify-content-center align-content-center">
+                <a asp-controller="Utente" asp-action="Index" class="text-decoration-none btnLightOutline rounded p-2">Visualizza tutti gli utenti</a>
+            </div>
+        </div>
+        <div class="col">
+            <div class="d-flex justify-content-center align-content-center">
+                <a asp-controller="Ordine" asp-action="Index" class="text-decoration-none btnLightOutline rounded p-2">Visualizza tutti gli ordini</a>
+            </div>
+        </div>
+        <div class="col">
+            <div class="d-flex justify-content-center align-content-center">
+                <a asp-controller="Ordine" asp-action="OrdiniDaEvadere" class="text-decoration-none btnLightOutline rounded p-2">Visualizza gli ordini da confermare</a>
+            </div>
+        </div>
+    </div>  
+</div>
+<div>
+    <h3 class="mb-3">Daily status</h3>
+    <div class="d-flex">
+        <div class="me-5">
+            <label for="dateStatus">Scegli una data</label>
+            <input name="dateStatus" min="2024-03-13" id="dateStatus" type="date" />
+        </div>
+        <div id="statusDiv" class="d-none d-flex">
+            <p id="totOrdini" class="me-3 mb-0"></p>
+            <p id="totOrdiniEvasi" class="me-3 mb-0"></p>
+            <p id="totIncassi" class="mb-0"></p>
+        </div>
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#dateStatus").change(function () {
+            var date = $("#dateStatus").val();
+            var year = date.toString().split('-')[0];
+            var month = date.toString().split('-')[1];
+            var day = date.toString().split('-')[2];
+
+            $.ajax({
+                url: '/Utente/DateStatus?year=' + year + '&month=' + month + '&day=' + day,
+                type: 'POST',
+                success: function (response) {
+                    // Aggiorna la visualizzazione o fornisci feedback all'utente
+                    $("#totOrdini").text("Totale ordini: " + response.totaleOrdini);
+                    $("#totOrdiniEvasi").text("Totale ordini evasi: " + response.totaleOrdiniEvasi);
+                    $("#totIncassi").text("Totale incassi: " + response.totaleIncassi + "€");
+                    $("#statusDiv").removeClass("d-none");
+                    console.log('Dati ricevuti con successo');
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    // Gestisci eventuali errori qui
+                    console.error('Errore durante l\'aggiunta del prodotto:', errorThrown);
+                }
+            });
+        })
+    })
+</script>

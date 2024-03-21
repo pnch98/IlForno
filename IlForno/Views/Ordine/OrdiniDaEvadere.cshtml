@@ -1,0 +1,79 @@
+﻿@model IEnumerable<IlForno.Models.Ordine>
+
+@{
+    ViewData["Title"] = "OrdiniDaEvadere";
+    Layout = "_Layout2";
+}
+
+<h1>Ordini Da Confermare</h1>
+
+<table class="table bgFornoLight rounded">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PrezzoTotale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IndirizzoDiConsegna)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataOrdine)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nota)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Utente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsEvaso)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrezzoTotale)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IndirizzoDiConsegna)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataOrdine)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nota)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Utente.Username)
+                </td>
+                <td>
+                    <input id="@item.Id" type="checkbox" value="@item.IsEvaso" />
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("input").change(function () {
+            var id = $(this).attr('id');
+            $.ajax({
+                url: '/Ordine/Evaso?id=' + id,
+                type: 'POST',
+                success: function (response) {
+                    // Aggiorna la visualizzazione o fornisci feedback all'utente
+                    console.log('Ordine evaso con successo');
+                    location.reload();
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    // Gestisci eventuali errori qui
+                    console.error("Errore durante la conferma dell'ordine:", errorThrown);
+                }
+            });
+        })
+    })
+</script>

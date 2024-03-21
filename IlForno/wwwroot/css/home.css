@@ -1,0 +1,57 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+* {
+    font-family: "Playfair Display", serif;
+}
+
+html {
+    height: 100%;
+    background-color: #25191B;
+}
+body {
+    background-color: #25191B;
+    width: 100dvw;
+    height: 100%;
+
+}
+#homeDiv {
+    background-image: url("/img/background/home.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0% 50%;
+    box-shadow: 0px 0px 20px rgb(14, 14, 14, 1);
+    opacity: 0;
+    transition: opacity 2.5s ease-in-out;
+}
+.bgFornoGradient {
+    background: rgb(79,50,46);
+    background: linear-gradient(165deg, rgba(79,50,46,1) 0%, rgba(37,25,27,1) 62%);
+}
+#menuBtn {
+    z-index: 9999;
+    opacity: 0;
+    left: 0px; /* Initial position off the screen to the left */
+    width: 0;
+    color: #6c2c2e;
+    transition: opacity 1.5s ease-in-out, width 1s ease-in-out, color 1s 0.5s ease-in-out; /* Transition for opacity and transform */
+    position: absolute;
+    bottom: 15%;
+    text-decoration: none;
+    /*    background-color: #6c2c2e;*/
+    background-color: #2B1D1E;
+    border-radius: 5px;
+    padding: 15px 40px;
+    box-shadow: 0px 0px 20px 5px rgba(14, 14, 14, 1);
+}
+
+    #menuBtn:hover {
+        background-color: #352222;
+        cursor: pointer;
+    }
+
+    #menuBtn.show {
+        opacity: 1;
+        width: 30%; /* Slide in from left to right */
+        color: #FFF5ED;
+    }
+

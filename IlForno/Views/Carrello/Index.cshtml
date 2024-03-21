@@ -1,0 +1,137 @@
+﻿@model List<Carrello>
+
+@{
+    ViewData["Title"] = "Carrello";
+    Layout = "_Layout2";
+}
+<div class="rightHeight">
+
+    <h1>Carrello</h1>
+
+    @if (Model.Count > 0)
+    {
+        double prezzoTotale = 0;
+        int tempoStimato = 0;
+        <table class="table bgFornoLight rounded">
+            <thead>
+                <tr>
+                    <th>Prodotto</th>
+                    <th>Quantità</th>
+                    <th>Prezzo</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    double prezzoProdxQuant = item.ProdottoOrdine.Prezzo * item.Quantita;
+                    prezzoTotale += prezzoProdxQuant;
+                    tempoStimato += item.ProdottoOrdine.TempoConsegna;
+                    <tr>
+                        <td>@item.ProdottoOrdine.Nome</td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <button class="btnDarkColor rounded removeOneButton" data-product-id="@item.ProdottoOrdine.Id"><i class="bi bi-dash"></i></button> &nbsp;
+                                <input style="width: 30px" readonly value="@item.Quantita" /> &nbsp;
+                                <button class="btnDarkColor rounded addOneButton" data-product-id="@item.ProdottoOrdine.Id"><i class="bi bi-plus"></i></button>
+                            </div>
+                        </td>
+                        <td> @prezzoProdxQuant€</td>
+                        <td class="d-flex justify-content-end removeProductButton" data-product-id="@item.ProdottoOrdine.Id"><button class="btn btn-sm btn-danger"><i class="bi bi-trash3-fill"></i></button></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        {
+            tempoStimato = tempoStimato / Model.Count;
+        }
+
+        <div class="d-flex align-itmes-start justify-content-between mb-3">
+            <div>
+                <p class="mb-0 font-monospace">Tempo stimato: @tempoStimato min</p>
+            </div>
+            <button class="btn btn-danger" id="removeAllButton">Rimuovi tutto</button>
+        </div>
+        <p class="mb-2 font-monospace">Prezzo totale: @prezzoTotale€</p>
+        <a asp-action="RiepilogoOrdine" class="text-decoration-none btnFourthColor rounded p-2">Procedi</a>
+    }
+    else
+    {
+        <p>Il carrello è vuoto.</p>
+    }
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".addOneButton").click(function () {
+            var productId = $(this).data("product-id");
+
+            $.ajax({
+                url: '/Carrello/AddOne/' + productId,
+                type: 'POST',
+                success: function (response) {
+                    // Aggiorna la visualizzazione o fornisci feedback all'utente
+                    console.log('Aggiunto con successo');
+                    location.reload();
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    // Gestisci eventuali errori qui
+                    console.error('Errore durante l\'aggiunta del prodotto:', errorThrown);
+                }
+            });
+        });
+
+        $(".removeOneButton").click(function () {
+            var productId = $(this).data("product-id");
+
+            $.ajax({
+                url: '/Carrello/RemoveOne/' + productId,
+                type: 'POST',
+                success: function (response) {
+                    // Aggiorna la visualizzazione o fornisci feedback all'utente
+                    console.log('Rimosso con successo');
+                    location.reload();
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    // Gestisci eventuali errori qui
+                    console.error('Errore durante la rimozione del prodotto:', errorThrown);
+                }
+            });
+        });
+
+        $(".removeProductButton").click(function () {
+            var productId = $(this).data("product-id");
+
+            $.ajax({
+                url: '/Carrello/RemoveProduct/' + productId,
+                type: 'POST',
+                success: function (response) {
+                    // Aggiorna la visualizzazione o fornisci feedback all'utente
+                    console.log('Rimosso con successo');
+                    location.reload();
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    // Gestisci eventuali errori qui
+                    console.error('Errore durante la rimozione del prodotto:', errorThrown);
+                }
+            });
+        });
+
+        $("#removeAllButton").click(function () {
+            $.ajax({
+                url: '/Carrello/RemoveAll/',
+                type: 'POST',
+                success: function (response) {
+                    // Aggiorna la visualizzazione o fornisci feedback all'utente
+                    console.log('Rimosso con successo');
+                    location.reload();
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    // Gestisci eventuali errori qui
+                    console.error('Errore durante la rimozione del prodotto:', errorThrown);
+                }
+            });
+        });
+    });
+</script>
